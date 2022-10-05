@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" dir=""ltr>
+	<head>
+		<script> src="jquery.js" charset="utf-8" </script>
+		<link rel="shortcut icon" href="#">
+	<! All the CSS for the website>
+		<style media="screen">
+		/* general styling of the website */
+			*{
+				box-sizing: border-box;
+				border: none;
+				outline: none;
+				margin: 0;
+				padding: 0;
+				letter-spacing: 2px;
+				font-family: verdana;
+			}
+
+			body
+			{
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 100vh;
+				background-color: #223;
+			}
+			.container
+			{
+				width: 600px;
+				text-align: left;
+			}
+
+
+			#input
+			{
+				width: 110%;
+				height: 40px;
+				font-size: 15px;
+				background: none;
+				color: #fff;
+				border-bottom: 1px solid #fff;
+			}
+			
+			#input:focus{
+				border-bottom: 2px solid #fff;
+			}
+
+			button
+			{
+				height: 30px;
+				width: 130px;
+				background-color: #ff0033;
+				color: #fff;
+				cursor: pointer;
+				margin: 10px 0;
+				font-size: 15px;
+				box-shadow: 0 3px 10px #111;
+			}
+			/* Button should react to being hovered over */
+			button:hover{
+				opacity: .8;
+			}
+			
+			p {
+				margin-bottom: 1px solid #fff;
+				color: white;
+			}
+		</style>
+
+	</head>
+	<body>
+	
+		<div class="container">
+		    <h2 style="color: white">Leave us a comment</h2>
+		    <! Form for user inputs >
+		    <form>
+		        <input
+		        	size="50"
+		        	type="text"
+		            id="comment-input"
+		            pattern="[A-Za-z\d\.]{6-12}"
+		            required
+		        >
+		    </form>
+		    <! button to put the comment on the website >
+		    <button onclick="leaveComment()">Comment</button>
+		    <! where the comment echos back at>
+		   	<p id="user-comment">
+
+		</div>
+		<script>
+		    function leaveComment() {
+		        const commentInput = document.getElementById("comment-input");
+		        const display = document.getElementById("user-comment");
+		        const re = new RegExp('^(([a-z])+.)+[A-Z]([a-z])+'); //Add this line for vulnerability
+		        //const re = new RegExp('^(([a-z])?.)?[A-Z]([a-z])?'); // Add this line to do fix
+		        const string1 = new String(commentInput.value);
+		        const found = string1.match(re); //do the regex calculatons before displaying
+		        display.innerHTML = commentInput.value; //do the regex calculatons before displaying
+		        commentInput.value = "" //clear the comment for the next input
+		    }
+		</script>
+	</body>
+</html>
